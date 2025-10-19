@@ -1,0 +1,50 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "_version": "5.0.0",
+    "compilerOptions": {
+        "importHelpers": true,
+        "allowJs": true,
+        "checkJs": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "bundler",
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "module": "esnext",
+        "noEmit": true,
+        "target": "esnext",
+        "lib": [
+            "esnext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "paths": {
+            "@": [
+                "./example"
+            ],
+            "@/*": [
+                "./example/*"
+            ],
+            "$lib": [
+                "./example/lib"
+            ],
+            "$lib/*": [
+                "./example/lib/*"
+            ]
+        }
+    },
+    "include": [
+        "vite.config.js",
+        "vite.config.ts",
+        "example/**/*.ts",
+        "example/**/*.js",
+        "example/**/*.svelte"
+    ],
+    "exclude": [
+        "node_modules/**",
+    ]
+}

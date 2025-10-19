@@ -1,0 +1,43 @@
+{
+    "name": "ngsoft/php-vite-adapter",
+    "description": "Adapter to be able to integrate front-end into project",
+    "version": "1.0.0",
+    "keywords": [
+        "laravel",
+        "vite",
+        "vite-plugin",
+        "adapter"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aymeric Anger",
+            "role": "Developer",
+            "homepage": "https://github.com/ngsoft"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "process-timeout": 0,
+        "platform-check": false
+    },
+    "autoload": {
+        "psr-4": {
+            "NGSOFT\\": "src/"
+        }
+    },
+    "scripts": {},
+    "suggest": {},
+    "provide": {},
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6|^7",
+        "friendsofphp/php-cs-fixer": "^3",
+        "jetbrains/phpstorm-attributes": "dev-master"
+    }
+}

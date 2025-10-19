@@ -1,0 +1,33 @@
+{
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true,
+    },
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer",
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSave": true
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "html.format.wrapLineLength": 120,
+    "html.format.extraLiners": "",
+    "files.eol": "\n",
+    "biome.enabled": true,
+    "prettier.enable": false,
+    "eslint.enable": false,
+    "eslint.format.enable": false,
+    "editor.defaultFormatter": null
+}

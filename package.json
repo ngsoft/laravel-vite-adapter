@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "vite:dev": "vite",
+        "vite:build": "vite build",
+        "vite:preview": "vite preview"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.2.6",
+        "@types/node": "*",
+        "tslib": "^2",
+        "typescript": "^5",
+        "vite": "^7",
+        "laravel-vite-plugin": "^2"
+    },
+    "dependencies": {}
+}

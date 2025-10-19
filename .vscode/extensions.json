@@ -1,0 +1,25 @@
+{
+    "recommendations": [
+        "biomejs.biome",
+        "vscode.json-language-features",
+        "vscode.html-language-features",
+        "EditorConfig.EditorConfig",
+        "DEVSENSE.phptools-vscode",
+        "Atishay-Jain.All-Autocomplete",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.code-runner",
+        "Chouzz.vscode-better-align",
+        "alefragnani.Bookmarks",
+        "akamud.vscode-caniuse",
+        "AESSoft.aessoft-class-autocomplete",
+        "faelv.composer-companion",
+        "codezombiech.gitignore",
+        "seatonjiang.gitmoji-vscode",
+        "ecmel.vscode-html-css",
+        "tintinweb.vscode-inline-bookmarks",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "VisualStudioExptTeam.intellicode-api-usage-examples",
+        "VisualStudioExptTeam.vscodeintellicode-completions",
+        "k--kato.intellij-idea-keybindings",
+    ]
+}
