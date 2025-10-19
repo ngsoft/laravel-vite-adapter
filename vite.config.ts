@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite';
-import { fileURLToPath, URL } from 'node:url';
+import {defineConfig} from 'vite';
+import {fileURLToPath, URL} from 'node:url';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import Unfonts from 'unplugin-fonts/vite';
+import fonts from './fonts';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,6 +14,7 @@ export default defineConfig({
             buildDirectory: 'build',
             refresh: true,
         }),
+        Unfonts(fonts),
         tailwindcss(),
     ],
     resolve: {
@@ -21,5 +24,5 @@ export default defineConfig({
         },
         conditions: ['browser'],
     },
-    server: { cors: true },
+    server: {cors: true},
 });

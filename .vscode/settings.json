@@ -5,7 +5,7 @@
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true,
+        "editor.formatOnSave": true
     },
     "[php]": {
         "editor.defaultFormatter": "junstyle.php-cs-fixer",

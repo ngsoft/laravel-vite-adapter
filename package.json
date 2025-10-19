@@ -17,7 +17,9 @@
         "vite": "^7",
         "laravel-vite-plugin": "^2",
         "@tailwindcss/vite": "^4",
-        "tailwindcss": "^4.1.14"
+        "tailwindcss": "^4.1.14",
+        "unplugin-fonts": "^1",
+        "@fontsource/poppins": "^5"
     },
     "dependencies": {}
 }
