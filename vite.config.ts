@@ -1,6 +1,7 @@
-import { defineConfig, type PluginOption, type UserConfig } from 'vite';
+import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import laravel from 'laravel-vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,15 +9,11 @@ export default defineConfig({
         laravel({
             input: ['example/app.ts'],
             publicDirectory: 'public',
-            buildDirectory: 'public/build',
+            buildDirectory: 'build',
             refresh: true,
         }),
+        tailwindcss(),
     ],
-    // build: {
-    //     target: 'esnext',
-    //     chunkSizeWarningLimit: 1024,
-    //     rollupOptions: { input: { app: './app/main.ts' } },
-    // },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./example', import.meta.url)),
@@ -25,5 +22,4 @@ export default defineConfig({
         conditions: ['browser'],
     },
     server: { cors: true },
-    publicDir: 'public',
 });

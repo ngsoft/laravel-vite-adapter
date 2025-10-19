@@ -2,17 +2,22 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "dev": "run-p php:dev vite:dev",
         "vite:dev": "vite",
         "vite:build": "vite build",
-        "vite:preview": "vite preview"
+        "vite:preview": "vite preview",
+        "php:dev": "symfony server:start --no-tls --use-gzip --port=8100"
     },
     "devDependencies": {
         "@biomejs/biome": "2.2.6",
+        "npm-run-all": "^4",
         "@types/node": "*",
         "tslib": "^2",
         "typescript": "^5",
         "vite": "^7",
-        "laravel-vite-plugin": "^2"
+        "laravel-vite-plugin": "^2",
+        "@tailwindcss/vite": "^4",
+        "tailwindcss": "^4.1.14"
     },
     "dependencies": {}
 }

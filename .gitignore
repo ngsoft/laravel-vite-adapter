@@ -10,10 +10,10 @@ Thumbs.db
 /vendor
 *.lock
 *-lock.json
-.env
 .env.*
 !.env.dist
 public/build
+public/hot
 /build
 /dist
 /var
