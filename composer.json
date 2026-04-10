@@ -1,7 +1,7 @@
 {
     "name": "ngsoft/php-vite-adapter",
     "description": "Adapter to be able to integrate vite powered apps into php project",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "keywords": [
         "laravel",
         "vite",
