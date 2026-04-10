@@ -9,16 +9,15 @@
     <?php
 
     use NGSOFT\Vite\Adapter\ViteAdapter;
+    use NGSOFT\Vite\Adapter\ViteAdapterOptions;
     use NGSOFT\Vite\Adapter\ViteException;
 
     require_once __DIR__ . '/../vendor/autoload.php';
     $isError = false;
 
-    try
-    {
-        echo (new ViteAdapter(dirname(__DIR__), __DIR__))('example/app.ts');
-    } catch (ViteException $err)
-    {
+    try {
+        echo (new ViteAdapter(dirname(__DIR__), __DIR__, new ViteAdapterOptions()))('example/app.ts');
+    } catch (ViteException $err) {
         $isError = $err->getMessage();
     } ?>
 </head>

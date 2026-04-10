@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "run-p php:dev vite:dev",
         "vite:dev": "vite",
+        "vite:watch": "vite build --watch",
         "vite:build": "vite build",
         "vite:preview": "vite preview",
         "php:dev": "symfony server:start --no-tls --use-gzip --port=8100"
@@ -19,7 +20,8 @@
         "@tailwindcss/vite": "^4",
         "tailwindcss": "^4.1.14",
         "unplugin-fonts": "^1",
-        "@fontsource/poppins": "^5"
+        "@fontsource/poppins": "^5",
+        "flyonui": "^2.4.1"
     },
     "dependencies": {}
 }

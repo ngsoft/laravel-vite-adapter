@@ -11,26 +11,26 @@ class ViteAdapter implements Version
     private ?string $hotFile         = null;
     private string $manifestFilename = 'manifest.json';
     private string $buildDirectory   = 'build';
-
     private string $basePath         = '';
-
     private ?string $nonce           = null;
-
     private bool $fixStylesImports   = false;
+    private bool $fixScriptsImports  = false;
     private readonly MimeDetector $mimeDetector;
 
     public function __construct(
         private readonly string $projectRoot,
-        private readonly string $publicDir
+        private readonly string $publicDir,
+        ?ViteAdapterOptions $options = null
     ) {
         $this->assertProjectRootValid($this->projectRoot);
         $this->assertPublicDirValid($this->publicDir);
         $this->mimeDetector = new MimeDetector();
+        $options && $this->resolveOptions($options);
     }
 
-    public function __invoke($entrypoints, ?string $buildDirectory = null): string
+    public function __invoke($entrypoints, ?string $buildDirectory = null, bool $loadClient = true): string
     {
-        return $this->loadEntryPoints($entrypoints, $buildDirectory);
+        return $this->loadEntryPoints($entrypoints, $buildDirectory, $loadClient);
     }
 
     /**
@@ -38,12 +38,13 @@ class ViteAdapter implements Version
      *
      * @param string|string[] $entrypoints
      * @param ?string         $buildDirectory
+     * @param bool            $loadClient
      *
      * @return string
      *
      * @noinspection HtmlUnknownTarget
      */
-    public function loadEntryPoints($entrypoints, ?string $buildDirectory = null): string
+    public function loadEntryPoints($entrypoints, ?string $buildDirectory = null, bool $loadClient = true): string
     {
         if ( ! is_array($entrypoints))
         {
@@ -56,11 +57,11 @@ class ViteAdapter implements Version
         {
             $server = trim(file_get_contents($hot));
             $nonce  = $this->nonce ? sprintf(' nonce="%s"', $this->nonce) : '';
-            $html   = sprintf(
+            $html   = $loadClient ? sprintf(
                 '<script%s type="module" src="%s"></script>',
                 $nonce,
                 $this->resolvePath($server, '@vite/client')
-            );
+            ) : '';
 
             foreach ($entrypoints as $entrypoint)
             {
@@ -138,9 +139,13 @@ class ViteAdapter implements Version
             }
         }
 
-        //        dump($preload);
-        //        dd($styles);
-        //        dd($scripts);
+        if ($this->fixScriptsImports)
+        {
+            foreach ($scripts as $script)
+            {
+                $this->handleRepairScriptsImports($script, $buildDirectory);
+            }
+        }
 
         // render tags
         $html     = implode("\n", $preload);
@@ -177,6 +182,17 @@ class ViteAdapter implements Version
     public function setFixStylesImports(bool $fixStylesImports): static
     {
         $this->fixStylesImports = $fixStylesImports;
+        return $this;
+    }
+
+    public function canFixScriptsImports(): bool
+    {
+        return $this->fixScriptsImports;
+    }
+
+    public function setFixScriptsImports(bool $fixScriptsImports): static
+    {
+        $this->fixScriptsImports = $fixScriptsImports;
         return $this;
     }
 
@@ -235,6 +251,25 @@ class ViteAdapter implements Version
         return $this;
     }
 
+    private function handleRepairScriptsImports(string $file, string $buildDirectory): void
+    {
+        $real     = $this->resolvePath($this->publicDir, $buildDirectory, $file);
+        $repaired = "{$real}.repaired";
+
+        if (is_file($repaired))
+        {
+            return;
+        }
+        @copy($real, $repaired);
+
+        if ($content = @file_get_contents($real))
+        {
+            // remove the asset absolute path (if basepath changed)
+            $content = preg_replace('#(=["`]modulepreload["`][^"`]+[`"])/#', '$1' . $this->basePath, $content);
+            @file_put_contents($real, $content);
+        }
+    }
+
     private function handleRepairStylesImports(string $file, string $buildDirectory): void
     {
         $real     = $this->resolvePath($this->publicDir, $buildDirectory, $file);
@@ -252,12 +287,23 @@ class ViteAdapter implements Version
             // remove the asset absolute path (if basepath changed)
             $content = str_replace(
                 'url(/' . $this->resolvePath($buildDirectory, 'assets') . '/',
-                'url(',
+                'url(' . $this->basePath,
                 $content,
             );
 
             @file_put_contents($real, $content);
         }
+    }
+
+    private function resolveOptions(ViteAdapterOptions $options): void
+    {
+        $this->setBasePath($options->basePath);
+        $this->buildDirectory    = $options->buildDirectory;
+        $this->nonce             = $options->nonce;
+        $this->hotFile           = $options->hotFile;
+        $this->manifestFilename  = $options->manifestFilename;
+        $this->fixStylesImports  = $options->fixStylesImports;
+        $this->fixScriptsImports = $options->fixScriptsImports;
     }
 
     /** @noinspection HtmlUnknownTarget
@@ -381,7 +427,8 @@ class ViteAdapter implements Version
             throw new ViteException('Project root "' . $projectRoot . '/composer.json" does not exist.');
         }
 
-        if ( ! is_file($this->resolvePath($projectRoot, 'vite.config.ts')))
+        if ( ! is_file($this->resolvePath($projectRoot, 'vite.config.ts'))
+            && ! is_file($this->resolvePath($projectRoot, 'vite.config.js')))
         {
             throw new ViteException('Project root "' . $projectRoot . '/vite.config.ts" does not exist.');
         }

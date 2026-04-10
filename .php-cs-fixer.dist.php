@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 // change strict to true to enable declare(strict_types=1); on all files
-$strict = false;
+$strict = true;
 $config = new Config();
 
 /** @noinspection PhpConditionAlreadyCheckedInspection */
