@@ -6,5 +6,5 @@ namespace NGSOFT\Vite\Adapter;
 
 interface Version
 {
-    const VERSION = '1.1.1';
+    const VERSION = '1.1.2';
 }

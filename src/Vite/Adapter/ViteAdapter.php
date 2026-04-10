@@ -265,7 +265,7 @@ class ViteAdapter implements Version
         if ($content = @file_get_contents($real))
         {
             // remove the asset absolute path (if basepath changed)
-            $content = preg_replace('#(=["`]modulepreload["`][^"`]+[`"])/#', '$1' . $this->basePath . '/', $content);
+            $content = preg_replace('#(=["`]modulepreload["`][^"`]+[`"])/#', '$1', $content);
             @file_put_contents($real, $content);
         }
     }
@@ -287,7 +287,7 @@ class ViteAdapter implements Version
             // remove the asset absolute path (if basepath changed)
             $content = str_replace(
                 'url(/',
-                "url({$this->basePath}/",
+                'url(',
                 $content,
             );
 
