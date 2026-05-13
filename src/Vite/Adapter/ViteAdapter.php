@@ -281,24 +281,22 @@ class ViteAdapter implements Version
 
         foreach ($entry->getDynamicImports() as $import)
         {
-            if (in_array($import, $loaded))
+            if ( ! in_array($import, $loaded))
             {
-                continue;
+                $chunks   = $this->getChunk($manifest, $import, $loaded);
+                $prefetch = [...$prefetch, ...$chunks[2], ...$chunks[0]];
+                $styles   = [...$styles, ...$chunks[1]];
             }
-            $chunks   = $this->getChunk($manifest, $import);
-            $prefetch = [...$prefetch, ...$chunks[2], ...$chunks[0]];
-            $styles   = [...$styles, ...$chunks[1]];
         }
 
         foreach ($entry->getImports() as $import)
         {
-            if (in_array($import, $loaded))
+            if ( ! in_array($import, $loaded))
             {
-                continue;
+                $chunks   = $this->getChunk($manifest, $import, $loaded);
+                $prefetch = [...$prefetch, ...$chunks[2], ...$chunks[0]];
+                $styles   = [...$styles, ...$chunks[1]];
             }
-            $chunks   = $this->getChunk($manifest, $import);
-            $prefetch = [...$prefetch, ...$chunks[2], ...$chunks[0]];
-            $styles   = [...$styles, ...$chunks[1]];
         }
 
         foreach ($entry->getCss() as $css)
