@@ -9,7 +9,7 @@ import fonts from './fonts';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['example/app.ts'],
+            input: ['example/app.ts', 'example/app.css'],
             publicDirectory: 'public',
             buildDirectory: 'build',
             refresh: true,
@@ -25,4 +25,5 @@ export default defineConfig({
         conditions: ['browser'],
     },
     server: {cors: true},
+    build: {modulePreload: false}
 });

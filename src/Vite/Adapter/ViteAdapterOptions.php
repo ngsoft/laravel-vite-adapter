@@ -13,6 +13,7 @@ readonly class ViteAdapterOptions
         public bool $fixStylesImports = false,
         public ?string $nonce = null,
         public ?string $hotFile = null,
-        public string $manifestFilename = 'manifest.json'
+        public string $manifestFilename = 'manifest.json',
+        public bool $preload = true
     ) {}
 }

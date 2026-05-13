@@ -6,16 +6,20 @@ namespace NGSOFT\Vite\Adapter;
 
 class ViteEntrypoint
 {
-    private string $file   = '';
-    private string $name   = '';
-    private string $src    = '';
-    private bool $isEntry  = false;
+    private string $file          = '';
+    private string $name          = '';
+    private string $src           = '';
+    private bool $isEntry         = false;
+    private bool $isDynamicEntry  = false;
 
     /** @var string[] */
-    private array $css     = [];
+    private array $css            = [];
 
     /** @var string[] */
-    private array $imports = [];
+    private array $imports        = [];
+
+    /** @var string[] */
+    private array $dynamicImports = [];
 
     public static function make(array $data, ?self $instance = null): static
     {
@@ -57,6 +61,11 @@ class ViteEntrypoint
         return $this->isEntry;
     }
 
+    public function getIsDynamicEntry(): bool
+    {
+        return $this->isDynamicEntry;
+    }
+
     /**
      * @return string[]
      */
@@ -71,5 +80,10 @@ class ViteEntrypoint
     public function getImports(): array
     {
         return $this->imports;
+    }
+
+    public function getDynamicImports(): array
+    {
+        return $this->dynamicImports;
     }
 }

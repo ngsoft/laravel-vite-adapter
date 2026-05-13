@@ -10,7 +10,7 @@
         "php:dev": "symfony server:start --no-tls --use-gzip --port=8100"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.2.6",
+        "@biomejs/biome": "^2.2.6",
         "npm-run-all": "^4",
         "@types/node": "*",
         "tslib": "^2",
@@ -21,6 +21,8 @@
         "tailwindcss": "^4.1.14",
         "unplugin-fonts": "^1",
         "@fontsource/poppins": "^5",
+        "@types/zepto": "^1.0.36",
+        "zepto": "^1.2.0",
         "flyonui": "^2.4.1"
     },
     "dependencies": {}

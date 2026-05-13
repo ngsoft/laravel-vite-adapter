@@ -35,7 +35,8 @@
             "$lib/*": [
                 "./example/lib/*"
             ]
-        }
+        },
+        "types": ["zepto"]
     },
     "include": [
         "vite.config.js",
@@ -45,6 +46,6 @@
         "example/**/*.svelte"
     ],
     "exclude": [
-        "node_modules/**",
+        "node_modules/**"
     ]
 }

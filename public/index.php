@@ -16,7 +16,7 @@
     $isError = false;
 
     try {
-        echo (new ViteAdapter(dirname(__DIR__), __DIR__, new ViteAdapterOptions()))('example/app.ts');
+        echo (new ViteAdapter(dirname(__DIR__), __DIR__, new ViteAdapterOptions()))(['example/app.css', 'example/app.ts']);
     } catch (ViteException $err) {
         $isError = $err->getMessage();
     } ?>

@@ -1,7 +1,26 @@
-import 'unfonts.css';
-import '@/app.css';
+// import 'unfonts.css';
+import ('./libs');
+import {z} from './zepto';
 
-import('@/libs')
+
+await (() => new Promise((resolve) => {
+
+    const wait = () => {
+        if ('HSStaticMethods' in window) {
+
+            return resolve(null)
+        }
+
+        requestAnimationFrame(wait)
+
+    };
+
+    wait()
+
+
+}))()
+
+console.debug('z', z);
 
 console.log('Hello World!');
 (document.querySelector('body') as HTMLElement).innerHTML = `<div class="flex flex-col gap-2 justify-center items-center w-full min-h-[100vh]">

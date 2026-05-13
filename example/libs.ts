@@ -1,3 +1,4 @@
-import "flyonui/flyonui";
+import 'flyonui/flyonui';
+
 
 (window as any).HSStaticMethods.autoInit()
