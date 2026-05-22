@@ -54,7 +54,6 @@ class ViteAdapter implements Version
         }
 
         $buildDirectory ??= $this->buildDirectory;
-        $manifest = $this->manifest($buildDirectory);
 
         if ($hot = $this->getHotFile())
         {
@@ -85,6 +84,8 @@ class ViteAdapter implements Version
             }
             return "{$html}\n";
         }
+
+        $manifest = $this->manifest($buildDirectory);
 
         $prefetch = [];
         $styles   = [];
